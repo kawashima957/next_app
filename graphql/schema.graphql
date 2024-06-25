@@ -1,0 +1,40 @@
+scalar DateTime
+  @specifiedBy(url: "https://scalars.graphql.org/andimarek/date-time")
+
+type User {
+  id: Int!
+  username: String!
+  email: String!
+  tasks: [Task!]
+}
+
+type Task {
+  id: Int!
+  title: String!
+  subtasks: [Subtask!]!
+}
+
+type Subtask {
+  id: Int!
+  name: String!
+  deadline: DateTime!
+  description: String!
+  completed: Boolean!
+  responsible: User!
+}
+
+type Query {
+  user(id: Int!): User
+  tasks: [Task!]!
+}
+
+type Mutation {
+  createUser(data: CreateUserInput!): User!
+  updateSubtaskCompleted(id: ID!, completed: Boolean!): Subtask!
+  addTask(title: String!): Task!
+}
+
+input CreateUserInput {
+  username: String!
+  email: String!
+}

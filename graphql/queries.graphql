@@ -1,0 +1,44 @@
+query GetTasks {
+  tasks {
+    id
+    title
+    subtasks {
+      id
+      name
+      deadline
+      completed
+      description
+      responsible {
+        id
+        username
+        email
+      }
+    }
+  }
+}
+
+mutation CreateUser($data: CreateUserInput!) {
+  createUser(data: $data) {
+    id
+    username
+    email
+  }
+}
+
+mutation AddTask($title: String!) {
+    addTask(title: $title) {
+      id
+      title
+      subtasks {
+        id
+        name
+        deadline
+        completed
+        description
+        responsible {
+          id
+          username
+        }
+      }
+    }
+  }
